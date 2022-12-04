@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CodeMirror 6 Quickstart</title>
+    <style>
+        #editor {
+            height: 500px;
+            width: 50%;
+        }
+
+        .cm-editor {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Editor goes here -->
+    <div id="editor"></div>
+
+    <!-- CodeMirror 6 -->
+    <script src="cm6.bundle.min.js"></script>
+    <script>
+        // Create an initial state for the view
+        const initialState = cm6.createEditorState("console.log(123);");
+        const view = cm6.createEditorView(initialState, document.getElementById("editor"));
+
+        // Programmatically change editor contents
+        console.log("Before:\n", view.state.doc.toString())
+        view.dispatch({ changes: { from: 0, insert: "// Add a comment to the first line\n" } })
+        console.log("After:\n", view.state.doc.toString())
+    </script>
+</body>
+
+</html>
