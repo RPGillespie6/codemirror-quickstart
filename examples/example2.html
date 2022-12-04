@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Quickstart Example 2</title>
+    <link rel="icon" href="data:;base64,=">
+    <style>
+        /* Set editor dimensions */
+        #editor {
+            height: 500px;
+            width: 50%;
+        }
+
+        /* Stretch editor to fit inside its containing div */
+        .cm-editor {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Editor goes in here -->
+    <div id="editor"></div>
+    <br>
+
+    <input type="checkbox" id="oneDark" name="oneDark" onchange="generateEditor()">
+    <label for="oneDark">Toggle <a href="https://github.com/codemirror/theme-one-dark">One Dark</a> Theme</label>
+    <br>
+
+    <!-- CodeMirror 6 -->
+    <script src="../dist/cm6.bundle.min.js"></script>
+    <script>
+        const oneDarkEl = document.getElementById("oneDark")
+        const view = cm6.createEditorView(undefined, document.getElementById("editor"));
+
+        function generateEditor() {
+            let options = {
+                oneDark: oneDarkEl.checked,
+            }
+
+            const initialState = cm6.createEditorState("function foo() {\n    console.log(123);\n}", options);
+            view.setState(initialState)
+        }
+        generateEditor();
+    </script>
+</body>
+
+</html>

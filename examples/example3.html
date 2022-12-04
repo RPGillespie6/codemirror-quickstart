@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Quickstart Example 3</title>
+    <link rel="icon" href="data:;base64,=">
+    <style>
+        /* Set editor dimensions */
+        #editor {
+            height: 500px;
+            width: 50%;
+        }
+
+        /* Stretch editor to fit inside its containing div */
+        .cm-editor {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Editor goes in here -->
+    <div id="editor"></div>
+    <br>
+    <p>States are kind of like git commits. Just like git commits are a snapshot of a repo's filesystem, Code Mirror
+        states are a snapshot of the state of the editor. Any time you type into the editor or dispatch changes, a new
+        state is generated. But if you saved an old state in a variable you can revert back to it.</p>
+
+    <p>Try making edits above, saving state, then loading a different state. Notice how the undo (ctrl-z) history is
+        tied to the current state you are on and its ancestor states and not necessarly what you most recently typed!
+    </p>
+
+    <input type="button" id="saveState" onclick="saveState()" value="Save State">
+    <br>
+    <br>
+    <select id="states"></select>
+    <input type="button" id="loadState" onclick="loadState()" value="Load State">
+    <br>
+
+    <!-- CodeMirror 6 -->
+    <script src="../dist/cm6.bundle.min.js"></script>
+    <script>
+        const statesEl = document.getElementById("states");
+        const saveStateEl = document.getElementById("saveState");
+        const loadStateEl = document.getElementById("loadState");
+
+        // Create an initial state for the view
+        const initialState = cm6.createEditorState("function foo() {\n    console.log(123);\n}");
+        const view = cm6.createEditorView(initialState, document.getElementById("editor"));
+        let states = { "Initial State": initialState };
+
+        function populateSelect() {
+            statesEl.innerHTML = "";
+
+            for (let key of Object.keys(states)) {
+                var option = document.createElement("option");
+                option.value = key;
+                option.text = key;
+                statesEl.appendChild(option);
+            }
+        }
+
+        let stateNum = 1;
+        function saveState() {
+            let stateName = `Saved State ${stateNum++}`;
+            states[stateName] = view.state;
+            populateSelect();
+            statesEl.value = stateName;
+        }
+
+        function loadState() {
+            view.setState(states[statesEl.value])
+        }
+
+        populateSelect();
+    </script>
+</body>
+
+</html>
