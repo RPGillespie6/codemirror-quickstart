@@ -25,25 +25,26 @@
     <div id="editor"></div>
     <br>
 
-    <input type="checkbox" id="oneDark" name="oneDark" onchange="generateEditor()">
+    <input type="checkbox" id="oneDark" name="oneDark" onchange="changeTheme()">
     <label for="oneDark">Toggle <a href="https://github.com/codemirror/theme-one-dark">One Dark</a> Theme</label>
     <br>
 
     <!-- CodeMirror 6 -->
     <script src="../dist/cm6.bundle.min.js"></script>
     <script>
-        const oneDarkEl = document.getElementById("oneDark")
+        const oneDarkEl = document.getElementById("oneDark");
         const view = cm6.createEditorView(undefined, document.getElementById("editor"));
+        const initialState = cm6.createEditorState("function foo() {\n    console.log(123);\n}");
+        view.setState(initialState);
 
-        function generateEditor() {
+        function changeTheme() {
             let options = {
                 oneDark: oneDarkEl.checked,
-            }
+            };
 
-            const initialState = cm6.createEditorState("function foo() {\n    console.log(123);\n}", options);
-            view.setState(initialState)
+            let newState = cm6.createEditorState(view.state.doc, options);
+            view.setState(newState);
         }
-        generateEditor();
     </script>
 </body>
 
