@@ -6,10 +6,10 @@ import { closeBrackets, autocompletion, closeBracketsKeymap, completionKeymap } 
 import { lineNumbers, highlightActiveLineGutter, highlightSpecialChars, drawSelection, dropCursor, rectangularSelection, crosshairCursor, highlightActiveLine, keymap, EditorView } from '@codemirror/view';
 
 // Theme
-import { oneDark } from "@codemirror/theme-one-dark"
+import { oneDark } from "@codemirror/theme-one-dark";
 
 // Language
-import { javascriptLanguage } from "@codemirror/lang-javascript"
+import { javascript } from "@codemirror/lang-javascript";
 
 function createEditorState(initialContents, options = {}) {
     let extensions = [
@@ -37,12 +37,12 @@ function createEditorState(initialContents, options = {}) {
             ...foldKeymap,
             ...completionKeymap,
         ]),
-        javascriptLanguage,
+        javascript(),
         syntaxHighlighting(defaultHighlightStyle, { fallback: true }),
-    ]
+    ];
 
     if (options.oneDark)
-        extensions.push(oneDark)
+        extensions.push(oneDark);
 
     return EditorState.create({
         doc: initialContents,
@@ -51,7 +51,7 @@ function createEditorState(initialContents, options = {}) {
 }
 
 function createEditorView(state, parent) {
-    return new EditorView({ state, parent })
+    return new EditorView({ state, parent });
 }
 
-export { createEditorState, createEditorView }
+export { createEditorState, createEditorView };
