@@ -18,6 +18,10 @@ Here's an example that illustrates how states and views work together:
 
 [Example 3](https://rpgillespie6.github.io/codemirror-quickstart/examples/example3.html)
 
+Here's an example with [openSearchPanel](https://codemirror.net/docs/ref/#search.openSearchPanel):
+
+[Example 4](https://rpgillespie6.github.io/codemirror-quickstart/examples/example4.html)
+
 You can also run these examples locally by cloning this repository and running `python3 -m http.server 8000` (or any webserver) from the root of the repository and then navigating to i.e. http://localhost:8000/examples/example1.html.
 
 Note that `cm6.bundle.js` does not contain every possible extension of CodeMirror 6 - just the main ones and a few I personally like to use. If you want syntax highlighting for a language other than javascript or a different theme or some other extension not included here, you'll have to create your own custom bundle.

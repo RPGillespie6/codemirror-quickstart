@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Quickstart Example 4</title>
+    <link rel="icon" href="data:;base64,=">
+    <style>
+        /* Set editor dimensions */
+        #editor {
+            height: 500px;
+            width: 50%;
+        }
+
+        /* Stretch editor to fit inside its containing div */
+        .cm-editor {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Editor goes in here -->
+    <div id="editor"></div>
+    <br>
+
+    <button id="search">Open search</button>
+    <br>
+
+    <!-- CodeMirror 6 -->
+    <script src="../dist/cm6.bundle.min.js"></script>
+    <script>
+        const view = cm6.createEditorView(undefined, document.getElementById("editor"));
+        const initialState = cm6.createEditorState("/**\n * \n * @param {string[]} items\n * @param nada\n */\nfunction foo(items, nada) {\n    for (var i=0; i<items.length; i++) {\n        alert(items[i] + 'juhu\\n');\n    }	// Real Tab.\n\n\n}\n");
+        view.setState(initialState);
+
+        let button = document.querySelector("#search");
+        button.addEventListener("click", () => {
+            cm6.openSearchPanel(view);
+        })
+    </script>
+</body>
+
+</html>

@@ -1,5 +1,5 @@
 import { EditorState } from '@codemirror/state';
-import { highlightSelectionMatches } from '@codemirror/search';
+import { openSearchPanel, highlightSelectionMatches } from '@codemirror/search';
 import { indentWithTab, history, defaultKeymap, historyKeymap } from '@codemirror/commands';
 import { foldGutter, indentOnInput, indentUnit, bracketMatching, foldKeymap, syntaxHighlighting, defaultHighlightStyle } from '@codemirror/language';
 import { closeBrackets, autocompletion, closeBracketsKeymap, completionKeymap } from '@codemirror/autocomplete';
@@ -54,4 +54,4 @@ function createEditorView(state, parent) {
     return new EditorView({ state, parent });
 }
 
-export { createEditorState, createEditorView };
+export { createEditorState, createEditorView, openSearchPanel };
